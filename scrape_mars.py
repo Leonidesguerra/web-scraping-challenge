@@ -82,9 +82,9 @@ def scrape():
         'featured_image_url' : featured_image_url,
         'fact_table' : fact_table,
         'hemisphere_images' : hemisphere_images
-    }
+     }
 
-    # Quite the browser after scraping
+    # Quit the browser after scraping
     browser.quit()
 
     # Return results
