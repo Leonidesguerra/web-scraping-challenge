@@ -11,12 +11,8 @@ mongo.db.collection.drop()
 
 @app.route("/")
 def home():
-    # Find one record of data from the mongo database
-    mision_mars = mongo.db.collection.find_one()
-
-    # Return template and data
-    return render_template("index.html", mars = mision_mars)
-
+    # go to home page to scrape info
+    return render_template("index.html")
 
 
 @app.route("/scrape")
@@ -29,8 +25,17 @@ def scrape():
     mongo.db.collection.update({}, mars_data, upsert=True)
 
     # Redirect back to home page
-    return redirect("/")
+    return redirect("/scrape_results")
 
+
+@app.route("/scrape_results")
+def result():
+    # Find one record of data from the mongo database
+    mision_mars = mongo.db.collection.find_one()
+
+    # Return template and data
+    return render_template("scrape_results.html", mars = mision_mars)
 
 if __name__ == "__main__":
     app.run(debug=True)
+    
